@@ -42,12 +42,20 @@ def load_company_price_history(ticker: str) -> pd.Series | None:
 
 
 def forward_return(price_series: pd.Series, start_date: pd.Timestamp, months: int = 12) -> float | None:
-    """Calendar-date based forward return — robust to holidays/market closures."""
+    """Calendar-date based forward return — robust to holidays/market closures.
+
+    Guards against pandas' asof() silently returning the last available price
+    when the requested date is beyond the data's actual range (which would
+    otherwise fabricate a near-zero "return" for dates we have no real data for).
+    """
     if price_series is None or price_series.empty:
         return None
     end_date = start_date + pd.DateOffset(months=months)
 
-    # asof finds the most recent available price on/before the given date
+    # Reject any window that extends past the last date we actually have data for
+    if end_date > price_series.index.max() or start_date < price_series.index.min():
+        return None
+
     start_price = price_series.asof(start_date)
     end_price = price_series.asof(end_date)
 
