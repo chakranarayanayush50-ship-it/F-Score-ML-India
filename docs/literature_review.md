@@ -5,14 +5,25 @@ paper did, what it found, and how it relates to (or differs from) this study.
 
 ---
 
-## 1. Shah et al. — Piotroski F-Score signal sensitivity (India)
+## 1. Shah (2025) — "Evaluating the Effectiveness of the Piotroski F-Score in
+the Indian Equity Market: Evidence from Nifty 100 (2007–2024)"
 
-**What they did:** Built a Piotroski F-Score portfolio on Indian stocks and
-tested sensitivity by removing one of the 9 signals at a time, tracking the
-effect on total portfolio growth over the investment period.
+**Author:** Ayush Shah, Mumbai, India (published in *Communications on
+Applied Nonlinear Analysis*)
+**Link:** https://internationalpubls.com/index.php/cana/article/view/6028
 
-**What they found:** The signals are NOT equally important. Baseline
-portfolio (all 9 signals): ~1695.86% growth (₹10,00,000 → ₹1,79,58,561.61).
+**What they did:** Two things, in one paper. (1) Applied the Piotroski
+F-Score to Nifty 100 companies from 2007-2024, selecting the top 10
+companies each quarter and comparing performance to the broader index.
+(2) Separately tested sensitivity by removing one of the 9 signals at a
+time from a portfolio, tracking the effect on total portfolio growth.
+
+**What they found:**
+- Part 1: firms with higher F-scores delivered stronger returns over time
+  and provided a cushion during market downturns.
+- Part 2 (signal removal): the signals are NOT equally important.
+  Baseline portfolio (all 9 signals): ~1695.86% growth (₹10,00,000 →
+  ₹1,79,58,561.61).
 
 | Signal removed | Portfolio value (₹) | Growth | Impact of removing it |
 |---|---|---|---|
@@ -27,15 +38,17 @@ portfolio (all 9 signals): ~1695.86% growth (₹10,00,000 → ₹1,79,58,561.61)
 | ΔAsset Turnover | 1,90,12,359.39 | 1801.24% | **Largest increase — removing it helped** |
 
 **Relation to my study:** This is the closest existing work — it already
-shows the 9 signals aren't equally important in an Indian sample, using
-portfolio-removal sensitivity testing. It does NOT use a trained ML model
-or any explainability method (SHAP/LIME). My study's SHAP-based ranking
-can be directly compared against this removal-based ranking as a
-cross-validation check — do the two independent methods agree on which
-signals matter most?
+shows the 9 signals aren't equally important in an Indian sample (Nifty
+100, large-cap), using portfolio-removal sensitivity testing. It does NOT
+use a trained ML model or any explainability method (SHAP/LIME), and it
+covers large-cap (Nifty 100), not small-cap (Nifty Smallcap 250) like my
+study. My study's SHAP-based ranking can be directly compared against
+this removal-based ranking as a cross-validation check — do the two
+independent methods agree on which signals matter most?
 
-**Cite as:** closest prior India-specific F-Score sensitivity work; the
-paper this study most directly extends.
+**Cite as:** closest prior India-specific F-Score work; the paper this
+study most directly extends and differentiates from (small-cap vs.
+large-cap, SHAP vs. portfolio-removal, trained ML model vs. no model).
 
 ---
 
@@ -106,9 +119,103 @@ effectively the direct invitation this study answers for India.
 study differs (XGBoost + SHAP vs. network DEA, India small-cap vs.
 Eurozone/US large-cap, explainability included).
 
+## 5. Meena, Pandey & Garg (2024) — Machine Learning Models Comparison for
+Bankruptcy Prediction for Indian Companies (IBC 2016)
+
+**What they did:** Compared logistic regression, decision tree, XGBoost,
+SVM, and Altman Z-Score on 65,583 records covering 7,008 Indian companies
+(257 bankrupt) under India's Insolvency and Bankruptcy Code, FY2016-2022.
+
+**What they found:** XGBoost performed best (AUC 92%), beating decision
+tree (76%), Altman Z-Score (82%), and logistic regression (63%). SVM
+underperformed (57%), showing ML isn't automatically better — model choice
+matters. Confirms findings from Wang et al. (2012), Barboza et al. (2017),
+Chen et al. (2010).
+
+**Relation to my study:** The strongest direct precedent for "ML beats
+traditional scoring formula in India" — but for bankruptcy prediction with
+Altman Z-Score, not for outperformance prediction with Piotroski F-Score.
+Confirms the general pattern I'm testing (ML > traditional formula in
+Indian markets) has already held for a *different* formula and *different*
+target variable. Strengthens the plausibility of my hypothesis without
+overlapping it directly.
+
+**Cite as:** strong supporting precedent — same country, same "ML vs.
+traditional formula" question, different formula (Altman not Piotroski)
+and different target (bankruptcy not outperformance).
+
 ---
 
-## Updated gap statement (for paper Introduction / Related Work)
+## 6. Ghosh & Kapil — Is Altman's Model Efficient in Predicting Bankruptcy?
+Altman Z-score vs. DEA vs. ANN (Indian steel companies)
+
+**What they did:** Compared Altman Z-Score, additive DEA (Data Envelopment
+Analysis), and ANN (neural network) models on Indian steel companies,
+using confusion matrices (classification accuracy, Type-I/Type-II error)
+across 2015-2018.
+
+**What they found:** Altman Z-Score had the lowest classification accuracy
+in most years (e.g., 85.00% in 2015) compared to DEA (92.69%) and ANN
+(91.54%). The Altman model also had the highest average misclassification
+cost. Their overall recommendation: DEA and ANN models outperform the
+traditional Altman Z-Score for Indian steel companies. One anomaly year
+(2017) where DEA underperformed, showing results aren't universally
+consistent year-to-year.
+
+**Relation to my study:** Another confirmed case of "traditional formula
+underperforms smarter model" in an Indian sector-specific sample —
+sector-specific (steel only) rather than broad small-cap, and uses DEA/ANN
+rather than XGBoost, with no SHAP explainability. Useful supporting
+citation, and the "one anomaly year" finding is worth noting — a reminder
+that results can vary year to year, relevant to my own robustness-check
+framing (PRE/POST SEBI split).
+
+**Cite as:** further supporting evidence that traditional scoring formulas
+underperform smarter models in Indian sector-specific contexts.
+
+---
+
+## 7. Pant, Rahman et al. (2025) — Machine Learning Enabled Early Warning
+System for Financial Distress Using Real-Time Digital Signals
+
+**What they did:** Built an ML early-warning system for *household*-level
+(not corporate) financial distress in the US, combining macroeconomic
+signals (GDP growth, inflation, FX), digital-economy signals (ICT demand,
+market volatility), and socioeconomic data across 750 households, 3
+monitoring rounds over 13 months. Compared logistic regression, decision
+trees, random forest, XGBoost, and LightGBM on both binary distress
+detection and 3-level severity classification, with SHAP for
+explainability.
+
+**What they found:** Notably, for the binary distress task, ML models did
+NOT clearly beat simple baselines — logistic regression scored ROC-AUC
+0.50 (essentially random), XGBoost only 0.49, and even LightGBM just
+0.46. This is an important honest finding: binary distress prediction was
+a "low-signal task" in their data. However, the *severity* classification
+(3-level: Low/Medium/High) task performed very well (XGBoost/LightGBM
+accuracy ~99.87%). SHAP identified Volatility Index, IoT Device Density,
+Emergency Policy Score, Inflation, and SME Finance Score as the top 5
+global predictors.
+
+**Relation to my study:** Genuinely useful parallel, for an unexpected
+reason: they found binary distress prediction can score at-or-near random
+(AUC ~0.46-0.50) even for advanced models like XGBoost, which is similar
+to what I found for my own *baseline* (plain F-Score, AUC 0.495) — but in
+my case, XGBoost meaningfully beat that baseline (0.570), whereas in their
+household-distress binary task, XGBoost did NOT clearly beat the naive
+baseline. This is a useful point of contrast to discuss: not every
+finance+ML+SHAP study finds ML adds value over baseline — mine does, in
+a specific, defensible way (same features, unequal weighting captured by
+the model), and I should be careful not to overclaim a "universal ML
+wins" narrative given this counter-example exists.
+
+**Cite as:** methodologically similar (XGBoost + SHAP for financial
+distress), different domain (household-level, US, not corporate/India),
+and a useful honest counter-example showing ML doesn't always beat naive
+baselines — supports framing my own result carefully rather than as an
+inevitability.
+
+---
 
 **Old framing (before finding Shah et al.):** "No study has shown the F-Score's
 9 signals are unequally important in India."
@@ -133,10 +240,17 @@ in the Indian market.
 
 ## Next steps for the literature review
 
-- [ ] Read Shah et al. in full (closest paper — highest priority)
+- [x] Shah (2025) — read and logged
+- [x] Meena, Pandey & Garg (2024) — read and logged
+- [x] Ghosh & Kapil — read and logged
+- [x] Pant, Rahman et al. (2025) — read and logged (via full-text fetch)
 - [ ] Try to access Gimeno et al. (2020) full text via ResearchGate
       request or college library — currently only have the abstract
-- [ ] Find 10-15 more general papers (Altman Z-Score/ML papers, other
-      Indian fundamental-scoring studies) to round out to 15-25 total
+- [ ] 7 more papers needed to reach 15 minimum (see link list shared
+      earlier — Panchal Altman Z-Score, V4FinBench, Cross-Market SHAP
+      paper, Explainable AI Volatility Regime paper, CNN+XAI bankruptcy
+      paper, Nguyen/Viviani/Ben Jabeur SHAP bankruptcy paper, and the
+      Comparative ML Minority-Class Distress paper are good candidates —
+      abstract-level skim is enough for most of these)
 - [ ] Once SHAP results are finalized, add the direct comparison table:
       SHAP ranking vs. Shah et al.'s removal-based ranking, side by side
