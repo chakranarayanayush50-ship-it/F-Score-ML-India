@@ -20,3 +20,9 @@ venv/
 # Editors
 .vscode/
 .idea/
+.venv311/
+__pycache__/
+archive_old_pipeline/
+data/processed_v2/
+results/logs/
+results/oos_predictions_*.csv

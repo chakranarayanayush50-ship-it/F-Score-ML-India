@@ -1,8 +1,7 @@
-yfinance
-jugaad-data
 pandas
 numpy
 scikit-learn
 xgboost
 shap
 matplotlib
+yfinance

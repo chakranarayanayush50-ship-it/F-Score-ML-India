@@ -1,0 +1,6 @@
+step,company_years,companies
+1. All company-years with statements,1933,392
+2. March year-end firms,1898,385
+3. Non-financial firms,1543,313
+4. With a valid 12-month return window,1097,300
+5. With all nine signals (analysis sample),502,271
