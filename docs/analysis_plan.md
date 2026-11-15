@@ -35,3 +35,6 @@ The pipeline is rerun unchanged. The two-year analysis becomes a pilot. The prim
 
 ## 6. Known limits (to be stated in the paper)
 Two usable fiscal years (FY2024, FY2025) and one forward test year; current constituent lists (survivorship bias); free Yahoo Finance data of limited depth and quality; no transaction costs.
+
+## 7. Log addendum
+5. 14 November 2026: novelty check by web search. Found closely related work (see docs/related_work_and_claims.md), including a Japanese study using the F-Score with XGBoost and SHAP. Earlier statements that this design was "first" or that SHAP was "never" applied to the F-Score are withdrawn. Claims are restricted to the Indian mid- and small-cap setting with leakage controls, pending a manual Scopus and Google Scholar search.
