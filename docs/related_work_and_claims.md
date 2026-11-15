@@ -21,3 +21,9 @@
 - AI-assistance disclosure: what AI was used for (drafting support, code help), and that the author checked and takes responsibility for everything.
 - Data availability: Yahoo Finance data cannot be redistributed; code and result tables are in this repository.
 - Conflict of interest and funding: author to confirm (none known).
+
+## Additional related work from Google Scholar searches (15 November 2026)
+- Rathore, J. S., "AI-Driven Stock Screening in Indian Equity Markets: A Retail Investor's Framework Using Machine Learning on NSE Data", SSRN (abstract id 6932218), June 2026; also listed in Epistora Journal of Economics and Finance Studies, 2026. Random Forest on six fundamental and momentum features for 50 NSE companies against P/E and P/B screens, 2023 hold-out year. Not the nine F-Score signals; no XGBoost or SHAP in the abstract.
+- Yadav, R., Patil, A. and Sengupta, R., "An analysis of Satyam case using bankruptcy and fraud detection models", SocioEconomic Challenges, 2023. Uses financial scoring models including an F score in an Indian case study (verify which F score).
+- Nadar, D. and Joshi, T., "Quality investing: Looking for value in quality stocks", NMIMS, 2020. Describes the F-Score in an Indian setting (verify).
+- Search note: queries with "F-score" but without "Piotroski" return many stock-prediction papers where F-score means the classification metric. Always put Piotroski in quotes.
